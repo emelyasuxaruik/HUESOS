@@ -8,7 +8,7 @@ const string HUESOS_VERSION = "0.2";
 const string DEFAULT_REPO = "https://twgood.serv00.net/huesos/pkgs/pkg.json";
 string CURRENT_REPO = DEFAULT_REPO;
 
-// Путь к файлу с репозиториями
+
 string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 string huesosDir = Path.Combine(appData, "huesos");
 string reposFile = Path.Combine(huesosDir, "repos.json");
@@ -18,7 +18,7 @@ Dictionary<string, string> repos = new(StringComparer.OrdinalIgnoreCase)
     ["main"] = DEFAULT_REPO
 };
 
-// Загружаем сохранённые репозитории
+
 if (File.Exists(reposFile))
 {
     try
@@ -30,7 +30,7 @@ if (File.Exists(reposFile))
     catch { }
 }
 
-// Сохраняем репозитории
+
 void SaveRepos()
 {
     Directory.CreateDirectory(huesosDir);
@@ -38,7 +38,7 @@ void SaveRepos()
     File.WriteAllText(reposFile, json);
 }
 
-// === КОМАНДЫ ===
+
 if (args.Length == 0)
 {
     Console.WriteLine("Пиши: huesos eblan.browser");
@@ -126,7 +126,7 @@ if (cmd == "remove" && args.Length > 1)
     return;
 }
 
-// === УСТАНОВКА ПАКЕТА ===
+
 string id = args[0].ToLower();
 if (args.Length > 1 && args[0].StartsWith("install_"))
     id = args[0]["install_".Length..].ToLower();
